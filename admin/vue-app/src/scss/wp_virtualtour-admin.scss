@@ -1,0 +1,432 @@
+$highlight-color: #0073aa;
+@import "./bootstrap";
+@import "../../node_modules/pannellum/build/pannellum";
+
+#wpvtTour {
+	.text-ellipsis {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
+	.opacity-0 {
+		opacity: 0 !important;
+	}
+
+	div, a {
+		box-sizing: border-box;
+	}
+
+	.dashicons {
+		transition: none !important;
+	}
+
+	.button {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		transition: none;
+
+		* {
+			transition: none;
+		}
+
+		&.button-custom {
+			border: none;
+			color: #383838;
+		}
+
+		&.bg-gray {
+			background: #eee;
+
+			&:hover {
+				background: #e4e4e4;
+			}
+		}
+
+		&.danger {
+			color: $danger;
+
+			&:hover {
+				background: $danger;
+				color: #fff;
+			}
+		}
+
+		&[disabled] {
+			pointer-events: none;
+		}
+
+	}
+
+	.collapsible-title {
+		padding: 1rem;
+		margin: 0 -1rem .5rem !important;
+		border-radius: .25rem .25rem 0 0;
+		transition: $transition-base;
+
+		&:hover {
+			background: darken(#f8f8f8, 5%);
+		}
+
+		&.collapsed {
+			border-radius: .25rem;
+		}
+
+		.toggle-btn {
+			box-shadow: none !important;
+			color: initial;
+		}
+	}
+
+	.droppable {
+		position: relative;
+		display: block;
+		width: 1rem;
+		margin: 0 0 0 -1rem;
+
+	}
+
+	.is-dragging {
+		.droppable {
+			&.active-dragging {
+				&:before {
+					content: "";
+					position: absolute;
+					top: -1rem;
+					left: calc(.5rem - 1px);
+					width: 0;
+					height: calc(100% + 1rem - 3px);
+					border-right: 2px dashed $highlight-color;
+				}
+			}
+		}
+	}
+
+	label {
+		display: inline-block;
+		margin: .5rem 0;
+		font-weight: bold;
+	}
+
+	.saving-spinner {
+		position: fixed;
+		top: 3rem;
+		right: 0;
+		z-index: 1;
+	}
+
+	.pannellum-wrapper {
+		position: sticky;
+		top: 40px;
+		transition: $transition-base;
+	}
+
+	.pannellum-wrapper-placeholder {
+		height: 550px;
+		background: #f8f8f8;
+		border-radius: $border-radius;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.panorama-wrapper {
+		position: relative;
+		height: 550px;
+
+		&:before,
+		&:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 50%;
+			width: 1px;
+			height: 100%;
+			background: #e700ff57;
+			z-index: 1;
+			pointer-events: none;
+		}
+
+		&:after {
+			top: 50%;
+			left: auto;
+			width: 100%;
+			height: 1px;
+		}
+	}
+
+	.tourimage,
+	.tourimage-placeholder {
+		width: 100px;
+		height: 100px;
+		background-size: cover;
+		background-color: #EFEFEF;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: $border-radius;
+
+		&:hover {
+			background-color: #E3E3E3;
+		}
+	}
+
+	.edit-scene-wrapper {
+		input, select {
+			width: 100%;
+		}
+	}
+
+	.card-section {
+		background: #f8f8f8;
+		padding: 1rem;
+		border-radius: .25rem;
+	}
+
+	.scene-menu {
+		position: relative;
+		display: flex;
+		flex-wrap: wrap;
+		padding-bottom: 0 !important;
+
+		a {
+			margin-right: 1rem;
+			width: 100px;
+			height: 100px;
+			background-size: cover;
+			background-position: center center;
+			background-color: #ededed;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+			box-shadow: 0 0 0 4px transparent;
+			border-radius: .25rem;
+
+			&:active,
+			&:focus,
+			&.active {
+				box-shadow: 0 0 0 1px #f3f5f6, 0 0 0 4px $highlight-color;
+			}
+
+			&:hover:not(.active) {
+				background-color: #E3E3E3;
+				box-shadow: 0 0 0 4px #d8d8d8;
+			}
+
+			&:not(.add-new) {
+				align-items: flex-end;
+
+				span {
+					display: block;
+					width: 100%;
+					text-align: center;
+					color: #fff;
+					padding: .3rem;
+					background: rgba(#000, .8);
+					border-radius: 0 0 .3rem .3rem;
+					word-break: break-word;
+				}
+			}
+
+			&.add-new {
+				* {
+					transition: none;
+				}
+
+				&:hover {
+					background: $highlight-color;
+
+
+					span {
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+
+	.hotspot-selector {
+		input {
+			width: 100%;
+		}
+	}
+
+	a.pano-upload-image {
+		background: #f3f5f6;
+		width: 100%;
+		padding: 1rem;
+		text-decoration: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: .25rem;
+
+		&:hover {
+			background-color: #f1f1f1;
+		}
+	}
+
+	.hot-spot-button {
+		position: relative;
+		display: flex;
+		justify-content: space-between;
+		border-radius: 3px;
+		text-decoration: none;
+		background: #f3f5f6;
+		transition: $transition-base;
+		z-index: 1;
+
+		> a {
+			text-decoration: none;
+			padding: .5rem;
+			width: 100%;
+		}
+
+		a {
+			box-shadow: none;
+		}
+
+		&:hover {
+			border-color: #bbb;
+			background: #efefef;
+		}
+
+		.icons {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			width: 80px;
+			padding-right: .5rem;
+		}
+
+		.dashicons-no {
+			padding-right: 0;
+		}
+	}
+
+	.nav-tab-active,
+	.nav-tab-active:focus,
+	.nav-tab-active:focus:active,
+	.nav-tab-active:hover {
+		background-color: #FFF !important;
+		border-bottom: 1px solid #FFF !important;
+	}
+
+	//.list-enter-active,
+	.list-leave-active {
+		transition: all .15s ease-in;
+	}
+
+	//.list-enter,
+	.list-leave-to {
+		opacity: 0;
+		margin-bottom: -50px;
+	}
+
+	.fadeInUp-enter-active,
+	.fadeInUp-leave-active {
+		width: 100%;
+		transition: all .15s ease-in;
+	}
+
+
+	.fadeInUp-enter-from,
+	.fadeInUp-leave-to {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+
+	.fadeInUp-leave-active {
+		display: none;
+	}
+
+	.fadeInUp-leave-to {
+	}
+
+
+	//.fadeInUp-enter-active {
+	//	transition: all .25s ease-in;
+	//	transform: translateY(0);
+	//	opacity: 1;
+	//}
+	//
+	//.fadeInUp-leave-active {
+	//	transition: all 0s;
+	//}
+	//
+	//.fadeInUp-enter {
+	//	transform: translateY(10px);
+	//	opacity: 0;
+	//}
+	//
+	//.fadeInUp-leave-to {
+	//	opacity: 0;
+	//}
+
+	/*== start of code for wpvt_tooltiptips ==*/
+	.wpvt_tooltip {
+		position: relative;
+		display: flex;
+	}
+
+	.wpvt_tooltip:hover::before,
+	.wpvt_tooltip:hover::after {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+		z-index: 100;
+	}
+
+	.wpvt_tooltip::after {
+		left: 50%;
+		opacity: 0;
+		position: absolute;
+		z-index: -100;
+		background: #3E474F;
+		border-radius: .25em;
+		bottom: 120%;
+		color: #EDEFF0;
+		content: attr(data-tip);
+		margin-left: -8rem;
+		padding: 1rem;
+		transition: all 0.25s ease-in-out 0.2s;
+		transition-delay: 0s;
+		transform: scale(0.6) translateY(50%);
+		width: 14rem;
+		white-space: normal;
+		text-align: center;
+		line-height: 1rem;
+	}
+
+	.wpvt_tooltip:hover::after {
+		transition: all .25s ease-in-out;
+		transition-delay: 0s;
+	}
+
+	input[type=checkbox] {
+		background-repeat: no-repeat;
+		height: 1.25rem;
+		width: 2.3rem !important;
+	}
+
+	input[type=checkbox]:checked::before {
+		display: none;
+	}
+
+	.form-switch {
+		min-height: 30px;
+	}
+
+	.empty-space {
+		min-height: 200vh;
+	}
+
+	.form {
+		input[type=date], input[type=datetime-local], input[type=datetime], input[type=email], input[type=month], input[type=number], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week],
+		select {
+			width: 100%;
+		}
+	}
+	
+}
